@@ -6,7 +6,19 @@ import org.json.JSONObject;
 
 import com.cg.Server.Model.SpinFeature;
 
+/**
+ * @author FMNPTeam - RGHM
+ *
+ *
+ */
 public class ProcessSpin {
+
+	/**
+	 * This method is used to set the symbol and reel values. and then get the
+	 * matrix and convert it into JSON *
+	 *
+	 * @return j : a JSONObject .
+	 */
 	public static JSONObject getSpinMatrix() {
 		LinkedHashMap<Integer, String> symbols = new LinkedHashMap<Integer, String>();
 		SpinFeature spin = new SpinFeature();
@@ -29,10 +41,6 @@ public class ProcessSpin {
 				symbols.get(4) };
 
 		String[][] matrix = spin.createSpin(reel1, reel2, reel3);
-		System.out.println(spin.getValue());
-		// String sMatrix = Arrays.deepToString(matrix).replace("], ", "]\n");
-		// + " \n Score : " + spin.getValue();
-		// System.out.print(matrix);
 		JSONObject j = JsonConverter.toJson(matrix);
 		j.put("Score", spin.getValue());
 		return j;
